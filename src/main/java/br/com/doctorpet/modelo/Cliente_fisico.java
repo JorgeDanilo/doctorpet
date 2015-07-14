@@ -18,7 +18,9 @@ import br.com.doctorpet.modelo.enums.Sexo;
 
 @Entity
 @Table(name = "cliente_fisico")
-public class Cliente_fisico {
+public class Cliente_fisico extends EntidadeDoctorPet{
+
+	private static final long serialVersionUID = 6852858149004057233L;
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Cliente idCliente;
@@ -98,6 +100,11 @@ public class Cliente_fisico {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	@Override
+	public Long getIdentificador() {
+		return id;
 	}
 
 }
