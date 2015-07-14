@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,12 @@ public class Endereco extends EntidadeDoctorPet {
 	@Id
 	@GeneratedValue
 	private Long id;
+
+	@ManyToOne
+	private Funcionario funcionario;
+
+	@ManyToOne
+	private ClienteFisico clienteFisico;
 
 	@Column(name = "logradouro", length = 100, nullable = false)
 	private String logradouro;
@@ -33,9 +40,49 @@ public class Endereco extends EntidadeDoctorPet {
 	public Long getIdentificador() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public ClienteFisico getClienteFisico() {
+		return clienteFisico;
+	}
+
+	public void setClienteFisico(ClienteFisico clienteFisico) {
+		this.clienteFisico = clienteFisico;
 	}
 
 }

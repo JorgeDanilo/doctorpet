@@ -1,13 +1,9 @@
 package br.com.doctorpet.modelo;
 
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,6 +16,9 @@ public class Login extends EntidadeDoctorPet {
 	@Id
 	@GeneratedValue
 	private Long id;
+
+	@OneToOne
+	private ClienteFisico clienteFisico;
 
 	@Column(name = "senha", nullable = false, length = 45)
 	private String senha;
@@ -37,13 +36,20 @@ public class Login extends EntidadeDoctorPet {
 		this.id = id;
 	}
 
-
 	public String getSenha() {
 		return senha;
 	}
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public ClienteFisico getClienteFisico() {
+		return clienteFisico;
+	}
+
+	public void setClienteFisico(ClienteFisico clienteFisico) {
+		this.clienteFisico = clienteFisico;
 	}
 
 }

@@ -1,10 +1,12 @@
 package br.com.doctorpet.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,15 +23,8 @@ public class Funcionario extends EntidadeDoctorPet {
 	@GeneratedValue
 	private Long id;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.doctorpet.modelo.EntidadeDoctorPet#getIdentificador()
-	 */
-	@Override
-	public Long getIdentificador() {
-		return id;
-	}
+	@ManyToOne(cascade = CascadeType.ALL)
+	private ClienteFisico clienteFisico;
 
 	@Column(name = "funcao", length = 45, nullable = false)
 	private String funcao;
@@ -88,6 +83,24 @@ public class Funcionario extends EntidadeDoctorPet {
 
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
+	}
+
+	public ClienteFisico getClienteFisico() {
+		return clienteFisico;
+	}
+
+	public void setClienteFisico(ClienteFisico clienteFisico) {
+		this.clienteFisico = clienteFisico;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see br.com.doctorpet.modelo.EntidadeDoctorPet#getIdentificador()
+	 */
+	@Override
+	public Long getIdentificador() {
+		return id;
 	}
 
 }
