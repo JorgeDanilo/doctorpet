@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +22,7 @@ import br.com.doctorpet.modelo.enums.Sexo;
  * @author fabrica-jorge
  *
  */
+
 @Entity
 @Table(name = "cliente_fisico")
 public class ClienteFisico extends EntidadeDoctorPet {

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+
+	<!-- criar uma pasta resources dentro do webapp e depois a pasta algaworks com os estilos. -->
+	<h:outputStylesheet library="doctorpet" name="estilo.css" />
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</h:head>
+<h:body>
+	<header>
+		<title>Doctor Pet</title>
+	</header>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container">...</div>
+	</nav>
+
+	<div id="conteudo" class="panel panel-primary">
+		<div class="panel-body">
+			<ui:insert name="corpo" />
+			Basic Panel example
+		</div>
+	</div>
+
+	<footer> Doctor Pet Software Gestão Petshops </footer>
+
+	<h:form>
+		<p:confirmDialog global="true">
+			<p:commandButton value="#{message['label.nao']}" type="button"
+				styleClass="ui-confirmdialog-no" />
+			<p:commandButton value="#{message['label.sim']}" type="button"
+				styleClass="ui-confirmdialog-yes" />
+		</p:confirmDialog>
+	</h:form>
+</h:body>
+</html>

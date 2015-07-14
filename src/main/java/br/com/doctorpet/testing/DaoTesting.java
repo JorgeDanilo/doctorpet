@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Random;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import br.com.doctorpet.modelo.Cliente;
 import br.com.doctorpet.modelo.ClienteFisico;
@@ -24,7 +24,71 @@ import br.com.doctorpet.util.JpaUtil;
 public class DaoTesting {
 
 	public static void main(String[] args) {
+		EntityManager manager = JpaUtil.getEntityManager();
 		
+		TypedQuery<Produto> query = manager.createQuery("select p from Produto p join p.funcionario id", Produto.class);
+		
+		List<Produto> produtos = query.getResultList();
+		
+		for (Produto produto : produtos) {
+			System.out.println(produto.getFuncionario().getClienteFisico().getNome());
+		}
+
+	}
+	
+	
+	@SuppressWarnings("unused")
+	private static void listaFuncionariosComClientes() {
+		EntityManager manager = JpaUtil.getEntityManager();
+		
+		TypedQuery<Funcionario> query = manager.
+				createQuery("select f from Funcionario f join f.clienteFisico id", Funcionario.class);
+		
+		List<Funcionario> funcionarios = query.getResultList();
+		
+		for (Funcionario funcionario : funcionarios) {
+			System.out.println(funcionario.getClienteFisico().getNome());
+			System.out.println(funcionario.getFuncao());
+			System.out.println(funcionario.getNumCarteiraProfissional());
+			System.out.println(funcionario.getNum_pis());
+		}
+	}
+
+	@SuppressWarnings("unused")
+	private static void listaClienteFisicoSemCliente() {
+		EntityManager manager = JpaUtil.getEntityManager();
+		
+		TypedQuery<ClienteFisico> query = manager.createQuery("from ClienteFisico", ClienteFisico.class);
+		
+		List<ClienteFisico> clientes = query.getResultList();
+		
+		System.out.println("Cliente Fisico");
+		
+		for (ClienteFisico clienteFisico : clientes) {
+			System.out.println("Nome: " + clienteFisico.getNome());
+			System.out.println("Sexo: " + clienteFisico.getSexo());
+			System.out.println("Data Nascimento: " +clienteFisico.getDataNascimento());
+			System.out.println("Rg: " + clienteFisico.getRg());
+			System.out.println("CPF: " + clienteFisico.getCpf());
+			
+		}
+	}
+
+	@SuppressWarnings("unused")
+	private static void listaCliente() {
+		EntityManager manager = JpaUtil.getEntityManager();
+		
+		TypedQuery<Cliente> query = manager.createQuery("from Cliente", Cliente.class);
+		
+		List<Cliente> cl = query.getResultList();
+		
+		for (Cliente cliente : cl) {
+			System.out.println(cliente.getIdentificador());
+		}
+	}
+
+	@SuppressWarnings("unused")
+	private static void salvar() {
 		EntityManager manager = JpaUtil.getEntityManager();
 		EntityTransaction trx = manager.getTransaction();
 		trx.begin();
@@ -86,7 +150,6 @@ public class DaoTesting {
 		
 		trx.commit();
 		manager.close();
-
 	}
 	
 
