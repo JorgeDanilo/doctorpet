@@ -16,18 +16,22 @@ import javax.persistence.TemporalType;
 
 import br.com.doctorpet.modelo.enums.Sexo;
 
+/**
+ * @author fabrica-jorge
+ *
+ */
 @Entity
 @Table(name = "cliente_fisico")
-public class Cliente_fisico extends EntidadeDoctorPet{
+public class ClienteFisico extends EntidadeDoctorPet {
 
 	private static final long serialVersionUID = 6852858149004057233L;
-
-	@ManyToOne(cascade=CascadeType.ALL)
-	private Cliente idCliente;
 
 	@Id
 	@GeneratedValue
 	private Long id;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Cliente cliente;
 
 	@Column(length = 100, nullable = false, unique = true)
 	private String nome;
@@ -45,14 +49,6 @@ public class Cliente_fisico extends EntidadeDoctorPet{
 
 	@Column(length = 15, nullable = false)
 	private String cpf;
-
-	public Cliente getIdCliente() {
-		return idCliente;
-	}
-
-	public void setIdCliente(Cliente idCliente) {
-		this.idCliente = idCliente;
-	}
 
 	public Long getId() {
 		return id;
@@ -100,6 +96,14 @@ public class Cliente_fisico extends EntidadeDoctorPet{
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override
